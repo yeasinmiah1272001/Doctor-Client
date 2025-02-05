@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
@@ -39,7 +39,7 @@ const Header = () => {
           HOME
         </NavLink>
         <NavLink
-          to="/doctors"
+          to="/alldoctors"
           className={({ isActive }) =>
             isActive
               ? "text-indigo-700 border-b-2 border-indigo-500"
@@ -72,9 +72,11 @@ const Header = () => {
 
       {/* Admin Panel & Profile Icon */}
       <div className="flex items-center gap-4">
-        <button className="border px-4 py-1  font-semibold rounded-full text-sm text-indigo-700 border-indigo-500">
-          Admin Panel
-        </button>
+        <Link to={"/dashboard/add-doctor"}>
+          <button className="border px-4 py-1  font-semibold rounded-full text-sm text-indigo-700 border-indigo-500">
+            Admin Panel
+          </button>
+        </Link>
         <FaUserCircle className="text-indigo-500 text-2xl cursor-pointer" />
       </div>
     </header>
