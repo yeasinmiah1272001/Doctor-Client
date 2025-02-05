@@ -1,14 +1,18 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { HiHome, HiCalendar, HiUserAdd, HiUsers } from "react-icons/hi";
 import React from "react";
+import Container from "../components/Container";
 
 const DashboardLayout = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white border-b z-10">
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2">
+        <Container
+          to={"/"}
+          className="flex items-center justify-between px-4 py-3"
+        >
+          <Link to={"/"} className="flex items-center gap-2">
             <div className="bg-indigo-500 text-white p-2 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,14 +32,14 @@ const DashboardLayout = () => {
             <span className="text-xl font-semibold text-gray-800">
               Prescripto
             </span>
-            <span className="ml-2 px-2 py-1 text-sm bg-gray-100 rounded-md text-gray-600">
+            <span className="ml-2 px-2 py-1 text-sm bg-gray-100 rounded-md text-black">
               Admin
             </span>
-          </div>
+          </Link>
           <button className="px-6 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors">
             Logout
           </button>
-        </div>
+        </Container>
       </header>
 
       {/* Sidebar */}
