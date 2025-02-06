@@ -12,18 +12,18 @@ const About = () => {
         subHeading={"About Related Details"}
       />
 
-      <div className=" p-10 rounded-2xl ">
+      <div className="p-10 rounded-2xl">
         {/* About Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2  items-center mx-auto mb-10">
-          {/* left side */}
-          <div className="">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center mx-auto mb-10">
+          {/* Left side */}
+          <div>
             <img
               src={aboutImg}
               alt="About"
-              className=" h-96 rounded-2xl w-[450px] lg:ml-16"
+              className="h-96 rounded-2xl w-[450px] lg:ml-16"
             />
           </div>
-          {/* right side */}
+          {/* Right side */}
           <div className="space-y-4">
             <p className="text-gray-700 leading-relaxed">
               Welcome to Prescripto, your trusted partner in managing your
@@ -73,6 +73,54 @@ const About = () => {
             <p className="text-gray-600 mt-2">
               Tailored recommendations and reminders to help you stay on top of
               your health.
+            </p>
+          </div>
+        </div>
+
+        {/* Related Section */}
+        <h3 className="text-center text-3xl font-bold text-gray-800 mt-16 mb-10">
+          RELATED INFORMATION
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Our Commitment Card */}
+          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition-shadow">
+            <h4 className="text-xl font-semibold text-gray-700 mb-2">
+              Our Commitment
+            </h4>
+            <p className="text-gray-600">
+              We are committed to providing top-notch healthcare solutions with
+              a user-first approach, ensuring that your journey to better health
+              is both simple and effective.
+            </p>
+          </div>
+          {/* Community Impact Card */}
+          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition-shadow">
+            <h4 className="text-xl font-semibold text-gray-700 mb-2">
+              Community Impact
+            </h4>
+            <p className="text-gray-600">
+              Our platform fosters a community where healthcare professionals
+              and patients collaborate to build a healthier society.
+            </p>
+          </div>
+          {/* Future Goals Card */}
+          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition-shadow">
+            <h4 className="text-xl font-semibold text-gray-700 mb-2">
+              Future Goals
+            </h4>
+            <p className="text-gray-600">
+              We continuously work toward innovating our platform to provide
+              advanced healthcare solutions and ensure accessibility for all.
+            </p>
+          </div>
+          {/* Testimonials Card */}
+          <div className="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition-shadow">
+            <h4 className="text-xl font-semibold text-gray-700 mb-2">
+              Testimonials
+            </h4>
+            <p className="text-gray-600">
+              Hear from our satisfied users who have experienced transformative
+              healthcare management through Prescripto.
             </p>
           </div>
         </div>
