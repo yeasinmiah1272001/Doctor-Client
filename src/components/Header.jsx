@@ -5,7 +5,7 @@ import Container from "./Container";
 
 const Header = () => {
   return (
-    <div className=" shadow-md bg-white">
+    <div className=" shadow-md bg-white top-0 sticky z-50">
       <Container className="flex items-center justify-between  ">
         {/* Logo Section */}
         <Link to={"/"} className="flex items-center gap-2">
