@@ -112,7 +112,7 @@ const DashboardLayout = () => {
             <span> Home</span>
           </NavLink>
           <NavLink
-            to="/allDoctor"
+            to="/allDoctors"
             className={({ isActive }) =>
               `flex items-center gap-3 px-4 py-3 text-gray-700 ${
                 isActive ? "bg-gray-300" : ""
