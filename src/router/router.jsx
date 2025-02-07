@@ -10,6 +10,7 @@ import AddDoctor from "../pages/dashboard/AddDoctor";
 import AdminHome from "../pages/dashboard/AdminHome";
 import Appointments from "../pages/dashboard/Appointments";
 import DoctorsList from "../pages/dashboard/DoctorsList";
+import DoctorsDetails from "../pages/DoctorsDetails";
 
 export const router = createBrowserRouter([
   {
@@ -29,8 +30,14 @@ export const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "about",
+        path: "/about",
         element: <About />,
+      },
+      {
+        path: "/appointmentDetails/:id",
+        element: <DoctorsDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/doctors/${params.id}`),
       },
     ],
   },
