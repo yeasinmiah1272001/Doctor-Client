@@ -6,7 +6,7 @@ import DoctorCard from "../../components/DoctorCard";
 
 const TopDoctors = () => {
   const [doctors] = useAllDoctors();
-  console.log("all", doctors);
+  // console.log("all", doctors);
   return (
     <Container>
       <SectionTitle

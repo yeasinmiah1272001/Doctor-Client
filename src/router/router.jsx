@@ -11,6 +11,8 @@ import AdminHome from "../pages/dashboard/AdminHome";
 import Appointments from "../pages/dashboard/Appointments";
 import DoctorsList from "../pages/dashboard/DoctorsList";
 import DoctorsDetails from "../pages/DoctorsDetails";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ export const router = createBrowserRouter([
         element: <DoctorsDetails />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/doctors/${params.id}`),
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },
