@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { HiHome, HiCalendar, HiUserAdd, HiUsers } from "react-icons/hi";
 import React from "react";
 import Container from "../components/Container";
+import { FaCartPlus } from "react-icons/fa";
 
 const DashboardLayout = () => {
   return (
@@ -88,6 +89,17 @@ const DashboardLayout = () => {
           >
             <HiUsers className="text-xl" />
             <span>Doctors List</span>
+          </NavLink>
+          <NavLink
+            to="/dashboard/userCarts"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                isActive ? "bg-gray-300" : ""
+              } rounded-lg transition-colors`
+            }
+          >
+            <FaCartPlus className="text-xl" />
+            <span>Carts</span>
           </NavLink>
         </nav>
         {/* divider */}

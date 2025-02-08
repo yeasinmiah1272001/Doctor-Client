@@ -13,6 +13,7 @@ import DoctorsList from "../pages/dashboard/DoctorsList";
 import DoctorsDetails from "../pages/DoctorsDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import UserCarts from "../pages/dashboard/UserCarts";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: "doctorslist",
         element: <DoctorsList />,
+      },
+      {
+        path: "userCarts",
+        element: <UserCarts />,
       },
     ],
   },

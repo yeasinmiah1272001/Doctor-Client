@@ -4,9 +4,12 @@ import { FaUserCircle } from "react-icons/fa";
 import Container from "./Container";
 import { AuthContext } from "../provider/AuthProvider";
 import { use } from "react";
+import useCarts from "../hooks/useCarts";
 
 const Header = () => {
   const { logOut, user } = useContext(AuthContext);
+  const [doctorsCart] = useCarts();
+  console.log("cart", doctorsCart);
   const handleLogout = () => {
     logOut();
   };
@@ -57,7 +60,7 @@ const Header = () => {
           {user && (
             <Link to="/dashboard/adminHome">
               <button className="border px-4 py-1 font-semibold rounded-full text-sm text-indigo-700 border-indigo-500 hover:bg-indigo-50">
-                Admin Panel
+                Dashboard <span>{doctorsCart.length}</span>
               </button>
             </Link>
           )}
