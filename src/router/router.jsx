@@ -15,6 +15,9 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import UserCarts from "../pages/dashboard/UserCarts";
 import AllUserList from "../pages/dashboard/AllUserList";
+import PrivateRoutes from "../router/PrivateRoutes";
+import UserHome from "../pages/dashboard/UserHome";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +58,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout />
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "add-doctor",
@@ -63,7 +70,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "adminHome",
-        element: <AdminHome />,
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
       },
       {
         path: "appointments",
@@ -71,7 +82,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "doctorslist",
-        element: <DoctorsList />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <DoctorsList />
+          </AdminRoute>
+        ),
       },
       {
         path: "userCarts",
@@ -79,7 +95,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "userList",
-        element: <AllUserList />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AllUserList />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "userHome",
+        element: <UserHome />,
       },
     ],
   },

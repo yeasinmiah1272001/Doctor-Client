@@ -7,6 +7,7 @@ import {
 } from "firebase/auth/cordova";
 import React, { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.Config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -14,6 +15,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const axiosPublic = useAxiosPublic();
 
   const [loading, setLoading] = useState(true);
 
@@ -37,16 +39,25 @@ const AuthProvider = ({ children }) => {
   // };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("this is user", currentUser);
-      setLoading(false);
-    });
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("token", res.data.token);
+            setLoading(false);
+          }
+        });
+      } else {
+        localStorage.removeItem("token");
+        setLoading(false);
+      }
 
-    return () => {
-      unSubscribe();
-    };
-  }, []);
+      console.log("currentUser", currentUser);
+    });
+    return () => unsubscribe();
+  }, [axiosPublic]);
   const authInfo = {
     user,
     loading,

@@ -5,9 +5,11 @@ import Container from "./Container";
 import { AuthContext } from "../provider/AuthProvider";
 import { use } from "react";
 import useCarts from "../hooks/useCarts";
+import useAdmin from "../hooks/useAdmin";
 
 const Header = () => {
   const { logOut, user } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   const [doctorsCart] = useCarts();
   console.log("cart", doctorsCart);
   const handleLogout = () => {
@@ -57,12 +59,17 @@ const Header = () => {
 
         {/* Admin Panel & Profile Icon */}
         <div className="flex items-center gap-4">
-          {user && (
-            <Link to="/dashboard/adminHome">
-              <button className="border px-4 py-1 font-semibold rounded-full text-sm text-indigo-700 border-indigo-500 hover:bg-indigo-50">
-                Dashboard <span>{doctorsCart.length}</span>
-              </button>
-            </Link>
+          {user && isAdmin && (
+            <p className="border px-4 py-1 font-semibold rounded-full text-sm text-indigo-700 border-indigo-500 hover:bg-indigo-50">
+              <NavLink to="/dashboard/adminHome">DashBoard</NavLink>
+            </p>
+          )}
+          {user && !isAdmin && (
+            <p className="border px-4 py-1 font-semibold rounded-full text-sm text-indigo-700 border-indigo-500 hover:bg-indigo-50">
+              <NavLink to="/dashboard/userHome">
+                DashBoard ({doctorsCart.length})
+              </NavLink>
+            </p>
           )}
           {user && (
             <p>

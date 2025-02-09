@@ -3,9 +3,10 @@ import { HiHome, HiCalendar, HiUserAdd, HiUsers } from "react-icons/hi";
 import React from "react";
 import Container from "../components/Container";
 import { FaCartPlus, FaHome, FaMoneyBill, FaUser } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
 
 const DashboardLayout = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
