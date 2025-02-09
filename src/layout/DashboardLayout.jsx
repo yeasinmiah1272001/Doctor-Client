@@ -2,9 +2,10 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { HiHome, HiCalendar, HiUserAdd, HiUsers } from "react-icons/hi";
 import React from "react";
 import Container from "../components/Container";
-import { FaCartPlus } from "react-icons/fa";
+import { FaCartPlus, FaHome, FaMoneyBill, FaUser } from "react-icons/fa";
 
 const DashboardLayout = () => {
+  const isAdmin = true;
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -45,63 +46,117 @@ const DashboardLayout = () => {
 
       {/* Sidebar */}
       <aside className="fixed top-0 left-0 h-full w-64 bg-white border-r pt-16">
-        <nav className="p-4 space-y-2">
-          <NavLink
-            to="/dashboard/adminHome"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                isActive ? "bg-gray-300" : ""
-              } rounded-lg transition-colors`
-            }
-          >
-            <HiHome className="text-xl" />
-            <span>Admin Home</span>
-          </NavLink>
-          <NavLink
-            to="/dashboard/appointments"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                isActive ? "bg-gray-300" : ""
-              } rounded-lg transition-colors`
-            }
-          >
-            <HiCalendar className="text-xl" />
-            <span>Appointments</span>
-          </NavLink>
-          <NavLink
-            to="/dashboard/add-doctor"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                isActive ? "bg-gray-300" : ""
-              } rounded-lg transition-colors`
-            }
-          >
-            <HiUserAdd className="text-xl" />
-            <span>Add Doctor</span>
-          </NavLink>
-          <NavLink
-            to="/dashboard/doctorslist"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                isActive ? "bg-gray-300" : ""
-              } rounded-lg transition-colors`
-            }
-          >
-            <HiUsers className="text-xl" />
-            <span>Doctors List</span>
-          </NavLink>
-          <NavLink
-            to="/dashboard/userCarts"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                isActive ? "bg-gray-300" : ""
-              } rounded-lg transition-colors`
-            }
-          >
-            <FaCartPlus className="text-xl" />
-            <span>Carts</span>
-          </NavLink>
-        </nav>
+        {isAdmin ? (
+          <>
+            {" "}
+            <nav className="p-4 space-y-2">
+              <NavLink
+                to="/dashboard/adminHome"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <HiHome className="text-xl" />
+                <span>Admin Home</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/appointments"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <HiCalendar className="text-xl" />
+                <span>Appointments</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/add-doctor"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <HiUserAdd className="text-xl" />
+                <span>Add Doctor</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/doctorslist"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <HiUsers className="text-xl" />
+                <span>Doctors List</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/userList"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <HiUsers className="text-xl" />
+                <span>All User List</span>
+              </NavLink>
+            </nav>
+          </>
+        ) : (
+          // user related navigation
+          <>
+            <NavLink
+              to="/dashboard/userHome"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                  isActive ? "bg-gray-300" : ""
+                } rounded-lg transition-colors`
+              }
+            >
+              <FaHome className="text-xl" />
+              <span>User Home</span>
+            </NavLink>
+            <NavLink
+              to="/dashboard/userCarts"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                  isActive ? "bg-gray-300" : ""
+                } rounded-lg transition-colors`
+              }
+            >
+              <FaCartPlus className="text-xl" />
+              <span>Carts</span>
+            </NavLink>
+            <NavLink
+              to="/dashboard/userpaymentHistry"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                  isActive ? "bg-gray-300" : ""
+                } rounded-lg transition-colors`
+              }
+            >
+              <FaMoneyBill className="text-xl" />
+              <span>Payment Histry</span>
+            </NavLink>
+            <NavLink
+              to="/dashboard/userProfile"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                  isActive ? "bg-gray-300" : ""
+                } rounded-lg transition-colors`
+              }
+            >
+              <FaUser className="text-xl" />
+              <span>User Profile</span>
+            </NavLink>
+          </>
+        )}
+
         {/* divider */}
         <div className="flex items-center my-4">
           <hr className="flex-grow border-t-2 border-gray-300" />

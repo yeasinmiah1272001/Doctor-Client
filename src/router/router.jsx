@@ -14,6 +14,7 @@ import DoctorsDetails from "../pages/DoctorsDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import UserCarts from "../pages/dashboard/UserCarts";
+import AllUserList from "../pages/dashboard/AllUserList";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: "userCarts",
         element: <UserCarts />,
+      },
+      {
+        path: "userList",
+        element: <AllUserList />,
       },
     ],
   },

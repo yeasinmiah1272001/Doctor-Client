@@ -10,6 +10,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import useCarts from "../hooks/useCarts";
 
 const DoctorsDetails = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const DoctorsDetails = () => {
   const appointmentDetails = useLoaderData();
   const category = appointmentDetails.speciality;
   const [doctors] = useAllDoctors();
+  const [doctorsCart, refetch] = useCarts();
   const relatedDoctors = doctors.filter((item) => item.speciality === category);
 
   const handleAddToAppointment = () => {
@@ -44,6 +46,7 @@ const DoctorsDetails = () => {
             confirmButtonText: "OK",
           });
         }
+        refetch();
         toast.success("appointment success");
       });
     } else {

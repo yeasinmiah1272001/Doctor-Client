@@ -6,9 +6,11 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
     register,
@@ -21,9 +23,19 @@ const Register = () => {
     const { name, email, password } = data;
     createUser(email, password).then((result) => {
       const user = result.user;
-      console.log(user);
-      toast.success("user Register success");
-      navigate("/login");
+
+      const userInfo = {
+        email: user.email,
+        name: name,
+      };
+
+      axiosPublic.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          toast.success("user Register success");
+          navigate("/login");
+        }
+      });
+      // console.log(userInfo);
     });
   };
   return (
