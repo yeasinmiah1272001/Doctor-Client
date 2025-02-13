@@ -1,12 +1,21 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { HiHome, HiCalendar, HiUserAdd, HiUsers } from "react-icons/hi";
-import React from "react";
+import React, { useContext } from "react";
 import Container from "../components/Container";
 import { FaCartPlus, FaHome, FaMoneyBill, FaUser } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
+import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
+  const navigate = useNavigate();
+  const { logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut();
+    navigate("/");
+    toast.success("Logout success");
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -39,7 +48,10 @@ const DashboardLayout = () => {
               Admin
             </span>
           </Link>
-          <button className="px-6 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors">
+          <button
+            onClick={handleLogout}
+            className="px-6 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors"
+          >
             Logout
           </button>
         </Container>
@@ -111,50 +123,53 @@ const DashboardLayout = () => {
         ) : (
           // user related navigation
           <>
-            <NavLink
-              to="/dashboard/userHome"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                  isActive ? "bg-gray-300" : ""
-                } rounded-lg transition-colors`
-              }
-            >
-              <FaHome className="text-xl" />
-              <span>User Home</span>
-            </NavLink>
-            <NavLink
-              to="/dashboard/userCarts"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                  isActive ? "bg-gray-300" : ""
-                } rounded-lg transition-colors`
-              }
-            >
-              <FaCartPlus className="text-xl" />
-              <span>Carts</span>
-            </NavLink>
-            <NavLink
-              to="/dashboard/userpaymentHistry"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                  isActive ? "bg-gray-300" : ""
-                } rounded-lg transition-colors`
-              }
-            >
-              <FaMoneyBill className="text-xl" />
-              <span>Payment Histry</span>
-            </NavLink>
-            <NavLink
-              to="/dashboard/userProfile"
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                  isActive ? "bg-gray-300" : ""
-                } rounded-lg transition-colors`
-              }
-            >
-              <FaUser className="text-xl" />
-              <span>User Profile</span>
-            </NavLink>
+            <nav className="p-3">
+              {" "}
+              <NavLink
+                to="/dashboard/userHome"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <FaHome className="text-xl" />
+                <span>User Home</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/userCarts"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <FaCartPlus className="text-xl" />
+                <span>Carts</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/userpaymentHistry"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <FaMoneyBill className="text-xl" />
+                <span>Payment Histry</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/userProfile"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <FaUser className="text-xl" />
+                <span>User Profile</span>
+              </NavLink>
+            </nav>
           </>
         )}
 

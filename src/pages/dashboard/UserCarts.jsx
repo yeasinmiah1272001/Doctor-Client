@@ -4,28 +4,42 @@ import useCarts from "../../hooks/useCarts";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import Container from "../../components/Container";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserCarts = () => {
   const [doctorsCart, refetch] = useCarts();
-
+  // const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
+  const totalPrice = doctorsCart.reduce((sum, doctor) => sum + doctor.fees, 0);
+
   const handleRemove = (email) => {
-    console.log(email);
     axiosSecure.delete(`/doctors-carts/${email}`).then((res) => {
       if (res.data.deletedCount > 0) {
-        toast("deleted success");
+        toast("Deleted successfully");
       }
       refetch();
     });
   };
 
   return (
-    <div>
+    <Container>
       <SectionTitle
         heading={"Carts Page"}
         subHeading={"Carts Related Details"}
       />
+      <div className="flex items-center justify-between mx-6">
+        <h1 className="text-xl font-semibold">Cart: {doctorsCart.length}</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-semibold">Fees: {totalPrice} $</h1>
+          <button className="bg-blue-500 animate-bounce text-white px-2 py-1 rounded-lg hover:bg-blue-600 transition">
+            Pay
+          </button>
+        </div>
+      </div>
+
       <div>
         {doctorsCart.map((doctor) => (
           <div key={doctor._id}>
@@ -80,7 +94,7 @@ const UserCarts = () => {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

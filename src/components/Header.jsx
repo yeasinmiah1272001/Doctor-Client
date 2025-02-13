@@ -11,7 +11,7 @@ const Header = () => {
   const { logOut, user } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
   const [doctorsCart] = useCarts();
-  console.log("cart", doctorsCart);
+  // console.log("cart", doctorsCart);
   const handleLogout = () => {
     logOut();
   };
