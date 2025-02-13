@@ -18,6 +18,7 @@ import AllUserList from "../pages/dashboard/AllUserList";
 import PrivateRoutes from "../router/PrivateRoutes";
 import UserHome from "../pages/dashboard/UserHome";
 import AdminRoute from "./AdminRoute";
+import UserProfile from "../pages/dashboard/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ export const router = createBrowserRouter([
       {
         path: "userHome",
         element: <UserHome />,
+      },
+      {
+        path: "userProfile",
+        element: <UserProfile />,
       },
     ],
   },
