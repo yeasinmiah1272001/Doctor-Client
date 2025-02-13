@@ -2,9 +2,23 @@ import React from "react";
 import SectionTitle from "../../components/SectionTitle";
 import useAllDoctors from "../../hooks/useAllDoctors";
 import { IoCheckmarkCircle } from "react-icons/io5";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const DoctorsList = () => {
-  const [doctors] = useAllDoctors();
+  const [doctors, refetch] = useAllDoctors();
+
+  const axiosSecure = useAxiosSecure();
+
+  const handleRemove = (id) => {
+    axiosSecure.delete(`/doctors/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        toast("deleted success");
+      }
+      refetch();
+    });
+  };
+
   return (
     <div>
       <SectionTitle
@@ -52,7 +66,10 @@ const DoctorsList = () => {
                       </span>
                     </h2>
                     <div className="space-x-4">
-                      <button className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">
+                      <button
+                        onClick={() => handleRemove(doctor._id)}
+                        className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+                      >
                         Delete
                       </button>
                       <button className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">
