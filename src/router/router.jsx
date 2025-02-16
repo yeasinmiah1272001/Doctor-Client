@@ -19,6 +19,8 @@ import PrivateRoutes from "../router/PrivateRoutes";
 import UserHome from "../pages/dashboard/UserHome";
 import AdminRoute from "./AdminRoute";
 import UserProfile from "../pages/dashboard/UserProfile";
+import Payment from "../pages/dashboard/Payment";
+import PaymentHistry from "../pages/dashboard/PaymentHistry";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +108,14 @@ export const router = createBrowserRouter([
       {
         path: "userProfile",
         element: <UserProfile />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
+      },
+      {
+        path: "paymenthistory",
+        element: <PaymentHistry />,
       },
     ],
   },

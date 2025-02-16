@@ -6,11 +6,13 @@ import { FaCartPlus, FaHome, FaMoneyBill, FaUser } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import useCarts from "../hooks/useCarts";
 
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
   const navigate = useNavigate();
   const { logOut } = useContext(AuthContext);
+  const [doctorsCart] = useCarts();
   const handleLogout = () => {
     logOut();
     navigate("/");
@@ -145,10 +147,10 @@ const DashboardLayout = () => {
                 }
               >
                 <FaCartPlus className="text-xl" />
-                <span>Carts</span>
+                <span>Carts ({doctorsCart.length})</span>
               </NavLink>
               <NavLink
-                to="/dashboard/userpaymentHistry"
+                to="/dashboard/paymenthistory"
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 text-gray-700 ${
                     isActive ? "bg-gray-300" : ""

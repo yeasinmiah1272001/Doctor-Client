@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import useCarts from "../../hooks/useCarts";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Container from "../../components/Container";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const UserCarts = () => {
   const [doctorsCart, refetch] = useCarts();
+  const { user } = useContext(AuthContext);
   // const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
@@ -32,11 +33,15 @@ const UserCarts = () => {
       />
       <div className="flex items-center justify-between mx-6">
         <h1 className="text-xl font-semibold">Cart: {doctorsCart.length}</h1>
+        <h1 className="text-xl font-semibold">Email: {user.email}</h1>
         <div className="flex items-center gap-2">
           <h1 className="text-xl font-semibold">Fees: {totalPrice} $</h1>
-          <button className="bg-blue-500 animate-bounce text-white px-2 py-1 rounded-lg hover:bg-blue-600 transition">
+          <Link
+            to={"/dashboard/payment"}
+            className="bg-blue-500 animate-bounce text-white px-2 py-1 rounded-lg hover:bg-blue-600 transition"
+          >
             Pay
-          </button>
+          </Link>
         </div>
       </div>
 
