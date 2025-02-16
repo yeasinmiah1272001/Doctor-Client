@@ -76,7 +76,7 @@ const DashboardLayout = () => {
                 <HiHome className="text-xl" />
                 <span>Admin Home</span>
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/dashboard/appointments"
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 text-gray-700 ${
@@ -86,7 +86,7 @@ const DashboardLayout = () => {
               >
                 <HiCalendar className="text-xl" />
                 <span>Appointments</span>
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/dashboard/add-doctor"
                 className={({ isActive }) =>
