@@ -55,7 +55,7 @@ const PaymentHistry = () => {
                   <td className="border border-gray-300 p-2">
                     {item.paymentIntentId}
                   </td>
-                  <td className="border border-gray-300 p-2">{item.data}</td>
+                  <td className="border border-gray-300 p-2">{item.date}</td>
                   <td className="border border-gray-300 p-2">{item.status}</td>
                 </tr>
               ))}
