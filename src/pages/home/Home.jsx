@@ -5,6 +5,7 @@ import Speciality from "./Speciality";
 import BookAppointment from "./BookAppointment";
 import TopDoctors from "./TopDoctors";
 import SpecialDoctors from "./SpecialDoctors";
+import MedicalSection from "./MedicalSection";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <TopDoctors />
       <BookAppointment />
       <SpecialDoctors />
+      <MedicalSection />
     </div>
   );
 };
