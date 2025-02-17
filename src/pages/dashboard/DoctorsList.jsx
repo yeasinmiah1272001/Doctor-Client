@@ -4,6 +4,7 @@ import useAllDoctors from "../../hooks/useAllDoctors";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const DoctorsList = () => {
   const [doctors, refetch] = useAllDoctors();
@@ -72,9 +73,12 @@ const DoctorsList = () => {
                       >
                         Delete
                       </button>
-                      <button className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">
+                      <Link
+                        to={`/dashboard/update/${doctor._id}`}
+                        className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+                      >
                         Edit
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

@@ -21,6 +21,7 @@ import AdminRoute from "./AdminRoute";
 import UserProfile from "../pages/dashboard/UserProfile";
 import Payment from "../pages/dashboard/Payment";
 import PaymentHistry from "../pages/dashboard/PaymentHistry";
+import UpdateDoctor from "../pages/dashboard/UpdateDoctor";
 
 export const router = createBrowserRouter([
   {
@@ -116,6 +117,12 @@ export const router = createBrowserRouter([
       {
         path: "paymenthistory",
         element: <PaymentHistry />,
+      },
+      {
+        path: "update/:id",
+        element: <UpdateDoctor />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/doctors/${params.id}`),
       },
     ],
   },
