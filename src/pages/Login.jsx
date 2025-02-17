@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import loginImg from "../assets/assets_frontend/appointment_img.png";
 import Container from "../components/Container";
 import { FaFacebook, FaGoogle } from "react-icons/fa6";
@@ -10,51 +10,55 @@ import toast from "react-hot-toast";
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm({
+    defaultValues: {
+      email: isAdmin ? "jihad@gmail.com" : "", // Default email for admin
+      password: isAdmin ? "111111" : "", // Default password for admin
+    },
+  });
+
+  useEffect(() => {
+    // Reset the form when isAdmin changes
+    reset({
+      email: isAdmin ? "jihad@gmail.com" : "",
+      password: isAdmin ? "111111" : "",
+    });
+  }, [isAdmin, reset]);
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
-
-    const { name, email, password } = data;
+    const { email, password } = data;
     loginUser(email, password).then((result) => {
       const user = result.user;
       console.log(user);
-      toast.success("user Login success");
+      toast.success("User Login Success");
       navigate("/");
     });
   };
 
   return (
     <Container>
-      <div className="flex min-h-screen items-center justify-center ">
+      <div className="flex min-h-screen items-center justify-center">
         <div className="flex bg-white rounded-2xl overflow-hidden max-w-4xl">
           {/* Left Form Section */}
           <div className="p-10 w-96 bg-white">
-            <h2 className="text-2xl font-bold text-gray-700 text-center mb-8">
-              Welcome Back!
+            <h2 className="text-2xl font-bold text-gray-700 text-center mb-4">
+              {isAdmin ? "Admin Login" : "User Login"}
             </h2>
+            <button
+              onClick={() => setIsAdmin(!isAdmin)}
+              className="mb-4 px-4 py-2 bg-gray-300 rounded-md w-full hover:bg-gray-400 transition"
+            >
+              Toggle to {isAdmin ? "User" : "Admin"} Login
+            </button>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <input
-                  className={`border rounded-md w-full outline-none px-3 py-2 ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                  }`}
-                  type="text"
-                  {...register("name", { required: "Name is required" })}
-                  placeholder="Enter your name"
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm">{errors.name.message}</p>
-                )}
-              </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Email
@@ -66,10 +70,6 @@ const Login = () => {
                   type="email"
                   {...register("email", {
                     required: "Email is required",
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Invalid email address",
-                    },
                   })}
                   placeholder="Enter your email"
                 />
@@ -107,7 +107,7 @@ const Login = () => {
                 type="submit"
                 className="bg-blue-500 text-white px-4 py-2 rounded-md w-full hover:bg-blue-600 transition-all duration-300"
               >
-                Login
+                {isAdmin ? "Admin Login" : "User Login"}
               </button>
               <p className="text-center text-gray-500 mt-4">
                 Don't have an account?{" "}
@@ -124,7 +124,7 @@ const Login = () => {
           </div>
 
           {/* Right Image Section */}
-          <div className="w-96 hidden md:flex justify-center items-center ">
+          <div className="w-96 hidden md:flex justify-center items-center">
             <img
               className="h-96 rounded-xl"
               src={loginImg}

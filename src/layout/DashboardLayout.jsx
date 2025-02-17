@@ -76,17 +76,7 @@ const DashboardLayout = () => {
                 <HiHome className="text-xl" />
                 <span>Admin Home</span>
               </NavLink>
-              {/* <NavLink
-                to="/dashboard/appointments"
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
-                    isActive ? "bg-gray-300" : ""
-                  } rounded-lg transition-colors`
-                }
-              >
-                <HiCalendar className="text-xl" />
-                <span>Appointments</span>
-              </NavLink> */}
+
               <NavLink
                 to="/dashboard/add-doctor"
                 className={({ isActive }) =>
@@ -108,6 +98,17 @@ const DashboardLayout = () => {
               >
                 <HiUsers className="text-xl" />
                 <span>Doctors List</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/appointments"
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-gray-700 ${
+                    isActive ? "bg-gray-300" : ""
+                  } rounded-lg transition-colors`
+                }
+              >
+                <HiCalendar className="text-xl" />
+                <span>Appontment List</span>
               </NavLink>
               <NavLink
                 to="/dashboard/userList"

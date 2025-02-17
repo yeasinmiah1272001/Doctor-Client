@@ -124,6 +124,10 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/doctors/${params.id}`),
       },
+      {
+        path: "appointment",
+        element: <Appointments />,
+      },
     ],
   },
 ]);
