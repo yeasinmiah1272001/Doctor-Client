@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         path: "/appointmentDetails/:id",
         element: <DoctorsDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/doctors/${params.id}`),
+          fetch(`https://doctor-server-pi.vercel.app/doctors/${params.id}`),
       },
       {
         path: "/login",

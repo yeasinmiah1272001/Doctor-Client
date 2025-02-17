@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://doctor-server-pi.vercel.app",
 });
 
 const useAxiosPublic = () => {
