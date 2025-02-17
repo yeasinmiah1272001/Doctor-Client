@@ -27,7 +27,6 @@ const UserProfile = () => {
               {userData?.name}
             </h1>
             <i className="text-2xl text-black ">{userData?.email}</i>
-            {/* <p className="text-lg text-gray-300">Role: {userData?.role}</p> */}
           </div>
         ))}
       </div>
