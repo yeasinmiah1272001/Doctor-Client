@@ -11,28 +11,26 @@ const Appointments = () => {
     queryFn: async () => {
       const res = await axiosSecure.get("/payments");
       console.log(res.data);
-      return res.data; // অবশ্যই অ্যারে হতে হবে
+      return res.data;
     },
   });
 
-  // 🔴 একই ইমেইলের ডাটা গ্রুপ করা
   const groupedPayments = payments.reduce((acc, item) => {
     if (!acc[item.email]) {
       acc[item.email] = {
         ...item,
         totalOrder: item.totalOrder || 0,
-        totalPayments: 1, // প্রথম পেমেন্ট ধরছি
-        totalFees: item.fees || 0, // ফি যোগ করছি
+        totalPayments: 1,
+        totalFees: item.fees || 0,
       };
     } else {
       acc[item.email].totalOrder += item.totalOrder || 0;
-      acc[item.email].totalPayments += 1; // পেমেন্ট কাউন্ট বাড়াচ্ছি
-      acc[item.email].totalFees += item.fees || 0; // মোট ফি যোগ করছি
+      acc[item.email].totalPayments += 1;
+      acc[item.email].totalFees += item.fees || 0;
     }
     return acc;
   }, {});
 
-  // গ্রুপ করা ডাটাকে অ্যারের মধ্যে রূপান্তর করা
   const uniquePayments = Object.values(groupedPayments);
 
   return (
