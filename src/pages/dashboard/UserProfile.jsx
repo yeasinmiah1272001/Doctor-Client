@@ -17,7 +17,7 @@ const UserProfile = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gradient-to-r from-blue-400 to-purple-500 shadow-xl rounded-lg mt-10 text-white">
       <SectionTitle heading="User Profile" subHeading="Update your profile" />
-      <div className="flex flex-col items-center gap-6 mt-6">
+      <div className="flex flex-col items-center gap-7 mt-6">
         {userInfo.map((userData, index) => (
           <div
             key={index}
