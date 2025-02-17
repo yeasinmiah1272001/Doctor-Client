@@ -25,6 +25,15 @@ const AllUserList = () => {
     });
   };
 
+  const handleDelete = (id) => {
+    axiosSecure.delete(`/users/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        toast.success("user deteted success");
+      }
+    });
+    refetch();
+  };
+
   return (
     <Container>
       <SectionTitle
@@ -78,7 +87,10 @@ const AllUserList = () => {
                         Make Admin
                       </button>
                     )}
-                    <button className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">
+                    <button
+                      onClick={() => handleDelete(user._id)}
+                      className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+                    >
                       Delete
                     </button>
                   </div>
